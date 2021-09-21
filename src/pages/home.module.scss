@@ -1,13 +1,13 @@
 .container {
-  max-width: 1120px;
+  max-width: 720px;
   margin: 0 auto;
   padding: 0 2rem;
 
   button {
-    margin-top: 64px;
+    margin: 4rem 0;
     font-weight: 600;
-    font-size: 18px;
-    line-height: 22px;
+    font-size: 1.125rem;
+    line-height: 1.375rem;
     text-align: justify;
     background: transparent;
     color: var(--pink-500);
@@ -21,7 +21,7 @@
 }
 
 .posts {
-  max-width: 1120px;
+  max-width: 720px;
   margin: 5rem auto 0;
 
 
