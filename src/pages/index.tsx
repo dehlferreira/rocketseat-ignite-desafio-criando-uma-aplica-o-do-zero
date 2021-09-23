@@ -13,7 +13,7 @@ import commonStyles from '../styles/common.module.scss';
 import styles from './home.module.scss';
 
 interface Post {
-  uid?: string;
+  slug: string;
   first_publication_date: string | null;
   data: {
     title: string;
@@ -42,7 +42,7 @@ export default function Home({ posts }: HomeProps) {
       <main className={styles.container}>
         <div className={styles.posts}>
           {posts.map(post => (
-            <Link key={post.uid} href="/">
+            <Link key={post.slug} href={`/post/${post.slug}`}>
               <a>
                 <strong>{post.data.title}</strong>
                 <p>{post.data.subtitle}</p>
