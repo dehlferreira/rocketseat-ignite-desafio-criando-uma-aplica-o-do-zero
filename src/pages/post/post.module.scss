@@ -91,3 +91,15 @@
 
 }
 
+.loading {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-weight: 600;
+  font-size: 1.13rem;
+  line-height: 1.38rem;
+  color: var(--pink-500);
+}
+
