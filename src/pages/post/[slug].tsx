@@ -61,9 +61,10 @@ export default function Post({ post }: PostProps) {
   );
 
   const textLenght = postContentFormattedInHtml.reduce((acc, cur) => {
-    const wordsHeading = cur.heading.split(' ');
-    const wordsBody = cur.body.split(' ');
-    return acc + wordsHeading.length + wordsBody.length;
+    const wordsHeading = cur?.heading ? cur?.heading?.split(' ') : ''; // TODO - mudar a condição do split para um regex
+    const wordsBody = cur?.body ? cur?.body?.split(' ') : ''; // TODO - mudar a condição do split para um regex
+
+    return acc + wordsHeading?.length + wordsBody?.length;
   }, 0);
 
   const readingDuration = Math.ceil(textLenght / 200);
@@ -71,7 +72,7 @@ export default function Post({ post }: PostProps) {
   return (
     <>
       <Head>
-        <title>Post</title>
+        <title>SpaceTraveling | {`${post.data.title}`}</title>
       </Head>
       <header className={styles.banner}>
         <img src={post.data.banner.url} alt="logo" />
