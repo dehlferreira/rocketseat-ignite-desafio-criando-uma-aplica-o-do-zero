@@ -23,8 +23,8 @@
 
 Este projeto foi desenvolvido para entrega do desafio do Ignite da Rocketseat. Tem como objetivo criar um blog do zero a partir de um layout disponibilizado, utlizando as técnologias Next.JS integrando com o Prismic CMS.
 
-Para visualizar a aplicação clique no link abaixo:
-- [Space Traveling](https://space-traveling-mu.vercel.app/)
+Para visualizar a aplicação clique no link [Space Traveling](https://space-traveling-mu.vercel.app/)
+
 
 
 ## 🚀 Tecnologias
