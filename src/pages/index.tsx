@@ -46,7 +46,7 @@ export default function Home({ postsPagination }: HomeProps) {
       .then(data => {
         const newPosts = data.results.map(d => {
           return {
-            slug: d.uid,
+            uid: d.uid,
             first_publication_date: d.first_publication_date,
             data: {
               title: d.data.title,
@@ -108,6 +108,7 @@ export const getStaticProps: GetStaticProps = async () => {
     [Prismic.predicates.at('document.type', 'posts')],
     {
       pageSize: 5,
+      orderings: '[document.last_publication_date desc]',
     }
   );
 
@@ -132,5 +133,6 @@ export const getStaticProps: GetStaticProps = async () => {
         results: posts,
       },
     },
+    revalidate: 1800,
   };
 };
