@@ -8,7 +8,10 @@ import Prismic from '@prismicio/client';
 import { RichText } from 'prismic-dom';
 
 import { FiCalendar, FiUser, FiClock } from 'react-icons/fi';
+import { useState } from 'react';
 import { getPrismicClient } from '../../services/prismic';
+
+import Footer from '../../components/Footer';
 
 import styles from './post.module.scss';
 
@@ -34,6 +37,8 @@ interface PostProps {
 }
 
 export default function Post({ post }: PostProps) {
+  const [isFirstPost, setIsFirstPost] = useState(false);
+  const [isLastPost, setIsLastPost] = useState(false);
   const router = useRouter();
 
   if (router.isFallback) {
@@ -103,16 +108,7 @@ export default function Post({ post }: PostProps) {
           </div>
         </article>
       </main>
-      <footer className={styles.navigationPosts}>
-        <div>
-          <p>Criando um app CRA do zero</p>
-          <button type="button">Post anterior</button>
-        </div>
-        <div>
-          <p>Criando um app CRA do zero</p>
-          <button type="button">Próximo post</button>
-        </div>
-      </footer>
+      <Footer isFirstPost={isFirstPost} isLastPost={isLastPost} />
     </>
   );
 }

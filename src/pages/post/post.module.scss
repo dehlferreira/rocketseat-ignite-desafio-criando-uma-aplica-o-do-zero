@@ -73,14 +73,14 @@
       font-weight: 700;
       font-size: 2.25rem;
       line-height: 140%;
-      text-align: justify;
+      text-align: left;
       color: var(--gray-100);
       margin: 3rem 0;
     }
   }
 
   p, b, ul, ol {
-    text-align: justify;
+    text-align: left;
   }
 
   p {
@@ -98,7 +98,12 @@
   }
 
   a {
-    color: var(--pink-500)
+    color: var(--pink-500);
+    transition: filter 0.2s;
+  }
+
+  a:hover {
+    filter: brightness(1.4);
   }
 
 }
@@ -113,77 +118,5 @@
   font-size: 1.13rem;
   line-height: 1.38rem;
   color: var(--pink-500);
-}
-
-.navigationPosts {
-  max-width: 720px;
-  margin: 3rem auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-top: 1px solid var(--gray-700);
-
-
-  div:first-child {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-top: 3rem;
-
-    p {
-      font-size: 1.125rem;
-      color: #D7D7D7;
-      line-height: 1.4rem;
-    }
-
-    button {
-      margin-top: 0.5rem;
-      font-weight: 600;
-      font-size: 1rem;
-      line-height: 1.375rem;
-      text-align: justify;
-      background: transparent;
-      color: var(--pink-500);
-      border: 0;
-      transition: filter 0.2s;
-
-      &:hover {
-        filter: brightness(0.7);
-      }
-
-    }
-
-  }
-
-   div:last-child {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    margin-top: 3rem;
-
-    p {
-      font-size: 1.125rem;
-      color: #D7D7D7;
-      line-height: 1.4rem;
-    }
-
-    button {
-      margin-top: 0.5rem;
-      font-weight: 600;
-      font-size: 1rem;
-      line-height: 1.375rem;
-      text-align: justify;
-      background: transparent;
-      color: var(--pink-500);
-      border: 0;
-      transition: filter 0.2s;
-
-      &:hover {
-        filter: brightness(0.7);
-      }
-
-    }
-
-   }
 }
 
