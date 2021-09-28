@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useMemo } from 'react';
 
 import Comments from '../Comments';
 
@@ -7,9 +8,21 @@ import styles from './footer.module.scss';
 interface FooterProps {
   isFirstPost: boolean;
   isLastPost: boolean;
+  title: string;
 }
 
-export default function Footer({ isFirstPost, isLastPost }: FooterProps) {
+export default function Footer({
+  isFirstPost,
+  isLastPost,
+  title,
+}: FooterProps) {
+  const titleWithElipsize = useMemo(() => {
+    const formattedText =
+      title.length >= 26 ? `${title.substring(0, 26)}...` : title;
+
+    return formattedText;
+  }, []);
+
   return (
     <>
       <footer className={styles.navigationPosts}>
@@ -19,7 +32,7 @@ export default function Footer({ isFirstPost, isLastPost }: FooterProps) {
           <div>
             <Link href="#">
               <a>
-                <p>Criando um app CRA do zero</p>
+                <p>{titleWithElipsize}</p>
                 <strong>Post anterior</strong>
               </a>
             </Link>
@@ -31,7 +44,7 @@ export default function Footer({ isFirstPost, isLastPost }: FooterProps) {
           <div>
             <Link href="#">
               <a>
-                <p>Criando um app CRA do zero</p>
+                <p>{titleWithElipsize}</p>
                 <strong>Próximo post</strong>
               </a>
             </Link>

@@ -108,7 +108,11 @@ export default function Post({ post }: PostProps) {
           </div>
         </article>
       </main>
-      <Footer isFirstPost={isFirstPost} isLastPost={isLastPost} />
+      <Footer
+        isFirstPost={isFirstPost}
+        isLastPost={isLastPost}
+        title="Criando um app CRA do zero"
+      />
     </>
   );
 }
