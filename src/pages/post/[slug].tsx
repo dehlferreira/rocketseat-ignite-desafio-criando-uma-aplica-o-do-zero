@@ -88,6 +88,9 @@ export default function Post({ post }: PostProps) {
             <FiClock />
             <span>{readingDuration} min</span>
           </div>
+          <div className={styles.postEditedIn}>
+            <span>* editado em 19 Mar 2021, às 15:49</span>
+          </div>
           <div className={styles.postContent}>
             {postContentFormattedInHtml.map(section => {
               return (
@@ -100,6 +103,16 @@ export default function Post({ post }: PostProps) {
           </div>
         </article>
       </main>
+      <footer className={styles.navigationPosts}>
+        <div>
+          <p>Criando um app CRA do zero</p>
+          <button type="button">Post anterior</button>
+        </div>
+        <div>
+          <p>Criando um app CRA do zero</p>
+          <button type="button">Próximo post</button>
+        </div>
+      </footer>
     </>
   );
 }
