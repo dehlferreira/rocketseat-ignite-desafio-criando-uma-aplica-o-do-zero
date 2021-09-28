@@ -17,7 +17,7 @@ export default function Footer({ isFirstPost, isLastPost }: FooterProps) {
           <div />
         ) : (
           <div>
-            <Link href="/">
+            <Link href="#">
               <a>
                 <p>Criando um app CRA do zero</p>
                 <strong>Post anterior</strong>
@@ -29,7 +29,7 @@ export default function Footer({ isFirstPost, isLastPost }: FooterProps) {
           <div />
         ) : (
           <div>
-            <Link href="/">
+            <Link href="#">
               <a>
                 <p>Criando um app CRA do zero</p>
                 <strong>Próximo post</strong>
