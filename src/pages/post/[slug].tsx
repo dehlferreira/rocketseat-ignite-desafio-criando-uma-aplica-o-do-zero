@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { GetStaticPaths, GetStaticProps } from 'next';
 
@@ -50,9 +51,10 @@ interface Navigation {
 interface PostProps {
   post: Post;
   navigation: Navigation;
+  preview: boolean;
 }
 
-export default function Post({ post, navigation }: PostProps) {
+export default function Post({ post, navigation, preview }: PostProps) {
   const router = useRouter();
 
   if (router.isFallback) {
@@ -136,13 +138,14 @@ export default function Post({ post, navigation }: PostProps) {
             })}
           </div>
         </article>
+        <Footer
+          isFirstPost={navigation.previousPost.uid === null}
+          isLastPost={navigation.nextPost.uid === null}
+          previousPost={navigation.previousPost}
+          nextPost={navigation.nextPost}
+          postPreview={preview}
+        />
       </main>
-      <Footer
-        isFirstPost={navigation.previousPost.uid === null}
-        isLastPost={navigation.nextPost.uid === null}
-        previousPost={navigation.previousPost}
-        nextPost={navigation.nextPost}
-      />
     </>
   );
 }
@@ -167,12 +170,18 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({
+  params,
+  preview = false,
+  previewData,
+}) => {
   const { slug } = params;
 
   const prismic = getPrismicClient();
 
-  const response = await prismic.getByUID('posts', String(slug), {});
+  const response = await prismic.getByUID('posts', String(slug), {
+    ref: previewData?.ref || null,
+  });
 
   const previousPostResponse = await prismic.query(
     [Prismic.Predicates.at('document.type', 'posts')],
@@ -228,6 +237,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         previousPost,
         nextPost,
       },
+      preview,
     },
     revalidate: 1800,
   };

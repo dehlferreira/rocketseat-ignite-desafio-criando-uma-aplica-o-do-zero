@@ -17,6 +17,7 @@ interface FooterProps {
   isLastPost: boolean;
   previousPost: Post;
   nextPost: Post;
+  postPreview: boolean;
 }
 
 export default function Footer({
@@ -24,6 +25,7 @@ export default function Footer({
   isLastPost,
   previousPost,
   nextPost,
+  postPreview,
 }: FooterProps) {
   const titlePreviousPostWithElipsize = useMemo(() => {
     const formattedText =
@@ -72,6 +74,13 @@ export default function Footer({
         )}
       </footer>
       <Comments />
+      {postPreview && (
+        <aside className={styles.previewButton}>
+          <Link href="/api/exit-preview">
+            <a>Sair do modo Preview</a>
+          </Link>
+        </aside>
+      )}
     </>
   );
 }
