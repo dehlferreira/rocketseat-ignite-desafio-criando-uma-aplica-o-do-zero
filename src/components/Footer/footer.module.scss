@@ -1,0 +1,48 @@
+.navigationPosts {
+  max-width: 720px;
+  margin: 3rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--gray-700);
+
+  div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+
+    a {
+      transition: filter 0.2s;
+
+      &:hover {
+        filter: brightness(0.7);
+      }
+
+      p {
+        font-size: 1.125rem;
+        color: #D7D7D7;
+        line-height: 1.4rem;
+      }
+
+      strong {
+        margin-top: 0.5rem;
+        font-weight: 600;
+        font-size: 1rem;
+        line-height: 1.375rem;
+        background: transparent;
+        color: var(--pink-500);
+        border: 0;
+      }
+    }
+  }
+
+  div:first-child {
+     align-items: flex-start;
+     text-align: left;
+  }
+
+  div:last-child {
+     align-items: flex-end;
+     text-align: right;
+  }
+}

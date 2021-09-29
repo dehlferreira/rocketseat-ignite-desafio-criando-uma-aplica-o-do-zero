@@ -10,6 +10,8 @@ import { RichText } from 'prismic-dom';
 import { FiCalendar, FiUser, FiClock } from 'react-icons/fi';
 import { getPrismicClient } from '../../services/prismic';
 
+import Footer from '../../components/Footer';
+
 import styles from './post.module.scss';
 
 interface Post {
@@ -29,11 +31,27 @@ interface Post {
   };
 }
 
-interface PostProps {
-  post: Post;
+interface Navigation {
+  previousPost: {
+    uid: string;
+    data: {
+      title: string;
+    };
+  };
+  nextPost: {
+    uid: string;
+    data: {
+      title: string;
+    };
+  };
 }
 
-export default function Post({ post }: PostProps) {
+interface PostProps {
+  post: Post;
+  navigation: Navigation;
+}
+
+export default function Post({ post, navigation }: PostProps) {
   const router = useRouter();
 
   if (router.isFallback) {
@@ -88,6 +106,9 @@ export default function Post({ post }: PostProps) {
             <FiClock />
             <span>{readingDuration} min</span>
           </div>
+          <div className={styles.postEditedIn}>
+            <span>* editado em 19 Mar 2021, às 15:49</span>
+          </div>
           <div className={styles.postContent}>
             {postContentFormattedInHtml.map(section => {
               return (
@@ -100,6 +121,12 @@ export default function Post({ post }: PostProps) {
           </div>
         </article>
       </main>
+      <Footer
+        isFirstPost={navigation.previousPost.uid === null}
+        isLastPost={navigation.nextPost.uid === null}
+        previousPost={navigation.previousPost}
+        nextPost={navigation.nextPost}
+      />
     </>
   );
 }
@@ -131,6 +158,24 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const response = await prismic.getByUID('posts', String(slug), {});
 
+  const previousPostResponse = await prismic.query(
+    [Prismic.Predicates.at('document.type', 'posts')],
+    {
+      pageSize: 1,
+      after: response.id,
+      orderings: '[document.last_publication_date desc]',
+    }
+  );
+
+  const nextPostResponse = await prismic.query(
+    [Prismic.Predicates.at('document.type', 'posts')],
+    {
+      pageSize: 1,
+      after: response.id,
+      orderings: '[document.last_publication_date]',
+    }
+  );
+
   const post = {
     uid: response.uid,
     first_publication_date: response.first_publication_date,
@@ -145,9 +190,43 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     },
   };
 
+  const previousPost = {
+    uid: previousPostResponse?.results[0]?.uid || null,
+    first_publication_date:
+      previousPostResponse?.results[0]?.first_publication_date || null,
+    data: {
+      title: previousPostResponse?.results[0]?.data.title || null,
+      subtitle: previousPostResponse?.results[0]?.data.subtitle || null,
+      banner: {
+        url: previousPostResponse?.results[0]?.data.banner.url || null,
+      },
+      author: previousPostResponse?.results[0]?.data.author || null,
+      content: previousPostResponse?.results[0]?.data.content || null,
+    },
+  };
+
+  const nextPost = {
+    uid: nextPostResponse?.results[0]?.uid || null,
+    first_publication_date:
+      nextPostResponse?.results[0]?.first_publication_date || null,
+    data: {
+      title: nextPostResponse?.results[0]?.data.title || null,
+      subtitle: nextPostResponse?.results[0]?.data.subtitle || null,
+      banner: {
+        url: nextPostResponse?.results[0]?.data.banner.url || null,
+      },
+      author: nextPostResponse?.results[0]?.data.author || null,
+      content: nextPostResponse?.results[0]?.data.content || null,
+    },
+  };
+
   return {
     props: {
       post,
+      navigation: {
+        previousPost,
+        nextPost,
+      },
     },
     revalidate: 1800,
   };
