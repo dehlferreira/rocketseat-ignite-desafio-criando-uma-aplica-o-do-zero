@@ -92,9 +92,7 @@ export default function Post({ post, navigation }: PostProps) {
       <Head>
         <title>SpaceTraveling | {`${post.data.title}`}</title>
       </Head>
-      <header className={styles.banner}>
-        <img src={post.data.banner.url} alt="logo" />
-      </header>
+      <img className={styles.banner} src={post.data.banner.url} alt="logo" />
       <main className={styles.container}>
         <article className={styles.post}>
           <h1>{post.data.title}</h1>

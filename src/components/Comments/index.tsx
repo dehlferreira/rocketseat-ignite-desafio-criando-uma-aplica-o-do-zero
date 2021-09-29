@@ -14,6 +14,7 @@ export default function Comments() {
       'dehlferreira/rocketseat-ignite-space-traveling'
     );
     script.setAttribute('issue-term', 'pathname');
+    script.setAttribute('label', 'comment :speech_balloon:');
     script.setAttribute('theme', 'dark-blue');
     anchor.appendChild(script);
   }, []);
