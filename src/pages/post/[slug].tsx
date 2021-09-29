@@ -16,6 +16,7 @@ import styles from './post.module.scss';
 
 interface Post {
   first_publication_date: string | null;
+  last_publication_date: string | null;
   data: {
     title: string;
     banner: {
@@ -70,13 +71,24 @@ export default function Post({ post, navigation }: PostProps) {
     };
   });
 
-  const formattedDate = format(
+  const formattedFirstPublicationDate = format(
     new Date(post.first_publication_date),
     'dd MMM yyyy',
     {
       locale: ptBR,
     }
   );
+
+  const formattedLastPublicationDate = format(
+    new Date(post.last_publication_date),
+    "'* editado em ' dd MMM yyyy', às' H':'m'",
+    {
+      locale: ptBR,
+    }
+  );
+
+  const isEditedPost =
+    post.last_publication_date !== post.first_publication_date;
 
   const textLenght = postContentFormattedInHtml.reduce((acc, cur) => {
     const wordsHeading = cur?.heading ? cur?.heading?.split(' ') : ''; // TODO - mudar a condição do split para um regex
@@ -98,15 +110,21 @@ export default function Post({ post, navigation }: PostProps) {
           <h1>{post.data.title}</h1>
           <div className={styles.postDetails}>
             <FiCalendar />
-            <span>{formattedDate}</span>
+            <span>{formattedFirstPublicationDate}</span>
             <FiUser />
             <span>{post.data.author}</span>
             <FiClock />
             <span>{readingDuration} min</span>
           </div>
-          <div className={styles.postEditedIn}>
-            <span>* editado em 19 Mar 2021, às 15:49</span>
-          </div>
+          {isEditedPost && (
+            <div className={styles.postEditedIn}>
+              <span>
+                {`${formattedLastPublicationDate.substr(0, 17)}`}
+                <p>{`${formattedLastPublicationDate.substr(17, 4)}`}</p>
+                {`${formattedLastPublicationDate.substr(20, 15)}`}
+              </span>
+            </div>
+          )}
           <div className={styles.postContent}>
             {postContentFormattedInHtml.map(section => {
               return (
@@ -177,6 +195,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const post = {
     uid: response.uid,
     first_publication_date: response.first_publication_date,
+    last_publication_date: response.last_publication_date,
     data: {
       title: response.data.title,
       subtitle: response.data.subtitle,
@@ -190,31 +209,15 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const previousPost = {
     uid: previousPostResponse?.results[0]?.uid || null,
-    first_publication_date:
-      previousPostResponse?.results[0]?.first_publication_date || null,
     data: {
       title: previousPostResponse?.results[0]?.data.title || null,
-      subtitle: previousPostResponse?.results[0]?.data.subtitle || null,
-      banner: {
-        url: previousPostResponse?.results[0]?.data.banner.url || null,
-      },
-      author: previousPostResponse?.results[0]?.data.author || null,
-      content: previousPostResponse?.results[0]?.data.content || null,
     },
   };
 
   const nextPost = {
     uid: nextPostResponse?.results[0]?.uid || null,
-    first_publication_date:
-      nextPostResponse?.results[0]?.first_publication_date || null,
     data: {
       title: nextPostResponse?.results[0]?.data.title || null,
-      subtitle: nextPostResponse?.results[0]?.data.subtitle || null,
-      banner: {
-        url: nextPostResponse?.results[0]?.data.banner.url || null,
-      },
-      author: nextPostResponse?.results[0]?.data.author || null,
-      content: nextPostResponse?.results[0]?.data.content || null,
     },
   };
 
