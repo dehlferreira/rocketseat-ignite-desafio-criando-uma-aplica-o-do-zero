@@ -5,23 +5,43 @@ import Comments from '../Comments';
 
 import styles from './footer.module.scss';
 
+type Post = {
+  uid: string;
+  data: {
+    title: string;
+  };
+};
+
 interface FooterProps {
   isFirstPost: boolean;
   isLastPost: boolean;
-  title: string;
+  previousPost: Post;
+  nextPost: Post;
 }
 
 export default function Footer({
   isFirstPost,
   isLastPost,
-  title,
+  previousPost,
+  nextPost,
 }: FooterProps) {
-  const titleWithElipsize = useMemo(() => {
+  const titlePreviousPostWithElipsize = useMemo(() => {
     const formattedText =
-      title.length >= 26 ? `${title.substring(0, 26)}...` : title;
+      previousPost?.data?.title?.length >= 26
+        ? `${previousPost?.data?.title.substring(0, 26)}...`
+        : previousPost?.data?.title;
 
     return formattedText;
-  }, []);
+  }, [previousPost]);
+
+  const titleNextPostWithElipsize = useMemo(() => {
+    const formattedText =
+      nextPost?.data?.title?.length >= 26
+        ? `${nextPost?.data?.title.substring(0, 26)}...`
+        : nextPost?.data?.title;
+
+    return formattedText;
+  }, [nextPost]);
 
   return (
     <>
@@ -30,9 +50,9 @@ export default function Footer({
           <div />
         ) : (
           <div>
-            <Link href="#">
+            <Link href={`/post/${previousPost.uid}`}>
               <a>
-                <p>{titleWithElipsize}</p>
+                <p>{titlePreviousPostWithElipsize}</p>
                 <strong>Post anterior</strong>
               </a>
             </Link>
@@ -42,9 +62,9 @@ export default function Footer({
           <div />
         ) : (
           <div>
-            <Link href="#">
+            <Link href={`/post/${nextPost.uid}`}>
               <a>
-                <p>{titleWithElipsize}</p>
+                <p>{titleNextPostWithElipsize}</p>
                 <strong>Próximo post</strong>
               </a>
             </Link>
