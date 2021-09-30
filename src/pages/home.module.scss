@@ -8,7 +8,6 @@
     font-weight: 600;
     font-size: 1.125rem;
     line-height: 1.375rem;
-    text-align: justify;
     background: transparent;
     color: var(--pink-500);
     border: 0;
@@ -37,7 +36,6 @@
       font-weight: 700;
       font-size: 1.75rem;
       line-height: 2.125rem;
-      text-align: justify;
       letter-spacing: -0.5px;
       color: var(--gray-100);
     }
@@ -47,7 +45,6 @@
       font-weight: 400;
       font-size: 1.125rem;
       line-height: 1.375rem;
-      text-align: justify;
       color: var(--gray-150);
     }
 
@@ -100,6 +97,51 @@
 
     &:hover {
       filter: brightness(0.7);
+    }
+  }
+}
+
+@media (max-width: 728px) {
+  .container {
+    margin: 1.25rem 1.25rem;
+
+    button {
+      margin-top: 3rem;
+      font-size: 1rem;
+    }
+  }
+
+  .posts {
+    a {
+      display: block;
+      transition: filter 0.2s;
+
+      strong {
+        font-size: 1.3rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      div {
+        margin-top: 1rem;
+
+        svg {
+          margin-right: 0.3rem;
+          width: 13px;
+          height: 13px;
+        }
+
+        time, span {
+          margin-right: 1rem;
+          font-size: 0.75rem;
+        }
+
+        time {
+          text-transform: capitalize;
+        }
+      }
     }
   }
 }
