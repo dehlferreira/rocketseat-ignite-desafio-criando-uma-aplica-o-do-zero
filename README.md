@@ -21,11 +21,11 @@
 
 ## 💻 Projeto
 
-Este projeto foi desenvolvido para entrega do desafio do Ignite da Rocketseat. Tem como objetivo criar um blog do zero a partir de um layout disponibilizado, utlizando as técnologias Next.JS integrando com o Prismic CMS.
+Este projeto foi desenvolvido para entrega do desafio do Ignite da Rocketseat. Tem como objetivo criar um blog do zero a partir de um layout disponibilizado, utlizando as tecnologias Next.JS integrando com o Prismic CMS, que faz o gerenciamento dos conteúdos que são postados no blog. Usamos também o modo Preview do Prismic CMS, que permite visualizar o post antes de ser publicado em produção. Utilizamos também o Utteranc, que disponibiliza uma área de comentários igual ao que é usado nas Issues do Github. Inclusive os comentários são armazenados nas próprias Issues do repositório do projeto.
 
-Para visualizar a aplicação clique no link [Space Traveling](https://space-traveling.andrelf.dev)
+Para visualizar a aplicação clique no link [space traveling](https://space-traveling.andrelf.dev)
 
-
+<br>
 
 ## 🚀 Tecnologias
 
@@ -35,8 +35,9 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [ReactJS](https://reactjs.org/docs/hello-world.html)
 - [NextJS](https://nextjs.org/)
 - [Prismic CMS](https://prismic.io/)
+- [Utteranc](https://utteranc.es/)
 
-
+<br>
 
 ## 🔖 Layout
 
@@ -44,12 +45,17 @@ No link abaixo você encontra o layout do projeto web. Lembrando que você preci
 
 - [Layout](https://www.figma.com/file/RgopQ8mTgJX8g8zXVJFo7M/Desafios-M%C3%B3dulo-3-ReactJS-(Copy)?node-id=17%3A2)
 
+<br>
+
 ## ⚙ Pré-Requisitos
 
 - [Node](https://nodejs.org/pt-br/)
 - [Yarn](https://yarnpkg.com/getting-started)
 
-## ⚙ Configuração
+<br>
+
+## ⚙ Rodando a aplicação localmente
+### ⚙ Configuração
 
 No terminal clone o projeto para o diretório desejado:
 
@@ -57,7 +63,7 @@ No terminal clone o projeto para o diretório desejado:
 git clone https://github.com/dehlferreira/rocketseat-ignite-desafio-criando-uma-aplica-o-do-zero.git
 ```
 
-## ⚙ Instalando dependências
+### ⚙ Instalando dependências
 
 Para instalar, acesse o diretório onde você clonou o projeto:
 
@@ -71,7 +77,7 @@ Instale as dependências:
 yarn install
 ```
 
-## ▶ Iniciando aplicação
+### ▶ Iniciando aplicação
 
 Ainda no diretório do projeto, execute o comando no terminal:
 
@@ -90,7 +96,13 @@ Crie um arquivo .env.local na raiz do projeto e insira as variáveis de ambiente
 
 ```cl
 PRISMIC_API_ENDPOINT=
+PRISMIC_ACCESS_TOKEN=
 ```
+<br>
+
+## 📝 Licença
+
+Este projeto está licenciado sob a Licença MIT. Veja o arquivo de [LICENÇA](https://github.com/GBDev13/space-traveling/blob/master/LICENSE) para detalhes.
 
 ---
 
