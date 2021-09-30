@@ -102,7 +102,7 @@ PRISMIC_ACCESS_TOKEN=
 
 ## 📝 Licença
 
-Este projeto está licenciado sob a Licença MIT. Veja o arquivo de [LICENÇA](https://github.com/GBDev13/space-traveling/blob/master/LICENSE) para detalhes.
+Este projeto está licenciado sob a Licença MIT. Veja o arquivo de [LICENÇA](https://github.com/dehlferreira/rocketseat-ignite-space-traveling/blob/master/LICENSE) para detalhes.
 
 ---
 
