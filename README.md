@@ -60,7 +60,7 @@ No link abaixo você encontra o layout do projeto web. Lembrando que você preci
 No terminal clone o projeto para o diretório desejado:
 
 ```
-git clone https://github.com/dehlferreira/rocketseat-ignite-desafio-criando-uma-aplica-o-do-zero.git
+git clone https://github.com/dehlferreira/rocketseat-ignite-space-traveling.git
 ```
 
 ### ⚙ Instalando dependências
@@ -68,7 +68,7 @@ git clone https://github.com/dehlferreira/rocketseat-ignite-desafio-criando-uma-
 Para instalar, acesse o diretório onde você clonou o projeto:
 
 ```
-cd rocketseat-ignite-desafio-criando-uma-aplica-o-do-zero
+cd rocketseat-ignite-space-traveling
 ```
 
 Instale as dependências:
